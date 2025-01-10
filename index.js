@@ -2,11 +2,14 @@ import express from "express";
 import cors from "cors";
 import 'dotenv/config'
 import mySqlDB from 'mysql2';
+import servicesRouter from "./routes/servicesRouter.js";
 const PORT = process.env.APP_PORT;
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.use("/usluge", servicesRouter)
 
 const connection = {
     host: process.env.DB_HOST,
@@ -15,7 +18,7 @@ const connection = {
     database: process.env.DB_NAME
 };
 
-const db = mySqlDB.createConnection(connection);
+export const db = mySqlDB.createConnection(connection);
 
 db.connect((err) => {
     if(err) {
@@ -27,15 +30,6 @@ db.connect((err) => {
 
 app.get("/", async(request, response)=>{
     return response.status(200).json({message: "Hello"})
-})
-
-
-app.get('/usluge', (req, res) => {
-    let sql = 'SELECT * FROM usluge;';
-
-    db.query(sql, (err, results) => {
-        res.json(results);
-    })
 })
 
 app.listen(PORT, ()=>{
