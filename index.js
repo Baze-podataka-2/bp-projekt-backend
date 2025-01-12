@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import 'dotenv/config'
 import mySqlDB from 'mysql2';
+import morgan from 'morgan';
 import servicesRouter from "./routes/servicesRouter.js";
 import serversRouter from "./routes/serversRouter.js";
 const PORT = process.env.APP_PORT;
@@ -9,6 +10,7 @@ const PORT = process.env.APP_PORT;
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(morgan("combined"));
 
 app.use("/usluge", servicesRouter)
 app.use("/posluzitelji", serversRouter)
