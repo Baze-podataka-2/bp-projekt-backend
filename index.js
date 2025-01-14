@@ -5,6 +5,7 @@ import mySqlDB from 'mysql2';
 import morgan from 'morgan';
 import servicesRouter from "./routes/servicesRouter.js";
 import serversRouter from "./routes/serversRouter.js";
+import equipmentRouter from "./routes/equipmentRouter.js";
 const PORT = process.env.APP_PORT;
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(morgan("combined"));
 
 app.use("/usluge", servicesRouter)
 app.use("/posluzitelji", serversRouter)
+app.use("/oprema", equipmentRouter)
 
 const connection = {
     host: process.env.DB_HOST,
