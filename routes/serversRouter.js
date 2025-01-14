@@ -19,7 +19,7 @@ serversRouter.get("/:id", async (req, res) => {
         return res.status(404).send({ message: "Poslužitelj nije pronađen" })
     }
 
-    const sql = "SELECT * FROM Server WHERE id_server = ?";
+    const sql = "SELECT * FROM Posluzitelj WHERE id_posluzitelj = ?";
     db.query(sql, [id], (err, results) => {
 
         if (err) {
