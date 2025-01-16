@@ -30,7 +30,7 @@ equipmentRouter.get('/:id', async(req, res) => {
 
 })
 
-//jos get single equipment
+
 //delete, update razmisliti na ovoj ruti jer se vecina toga dogada preko procedura u bazi, ali moze npr biti azuriraj stanje na zalihama opreme za sada
 
 export default equipmentRouter;

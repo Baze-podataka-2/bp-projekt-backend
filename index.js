@@ -6,7 +6,8 @@ import morgan from 'morgan';
 import servicesRouter from "./routes/servicesRouter.js";
 import serversRouter from "./routes/serversRouter.js";
 import equipmentRouter from "./routes/equipmentRouter.js";
-import LogsRouter from "./routes/logsRouter.js"
+import LogsRouter from "./routes/logsRouter.js";
+import configurationRouter from "./routes/deviceConfigurations.js";
 
 const PORT = process.env.APP_PORT;
 
@@ -19,6 +20,7 @@ app.use("/usluge", servicesRouter)
 app.use("/posluzitelji", serversRouter)
 app.use("/oprema", equipmentRouter)
 app.use("/logovi", LogsRouter)
+app.use("/konfiguracija", configurationRouter)
 
 const connection = {
     host: process.env.DB_HOST,
