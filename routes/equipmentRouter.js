@@ -12,6 +12,19 @@ equipmentRouter.get('/', (req, res) => {
     })
 })
 
+// Get popular equipment
+equipmentRouter.get('/popularna', (req, res) => {
+    let sql = 'SELECT * FROM najpopularnija_oprema;';
+
+    db.query(sql, (err, results) => {
+        if(err) {
+            throw err;
+        }
+        res.json(results)
+    })
+})
+
+
 // Get single equipment
 equipmentRouter.get('/:id', async(req, res) => {
     const { id } = req.params;
@@ -29,6 +42,19 @@ equipmentRouter.get('/:id', async(req, res) => {
     })
 
 })
+
+// Get popular equipment
+equipmentRouter.get('/popularna', (req, res) => {
+    let sql = 'SELECT * FROM najpopularnija_oprema;';
+
+    db.query(sql, (err, results) => {
+        if(err) {
+            throw err;
+        }
+        res.json(results)
+    })
+})
+
 
 
 //delete, update razmisliti na ovoj ruti jer se vecina toga dogada preko procedura u bazi, ali moze npr biti azuriraj stanje na zalihama opreme za sada
