@@ -7,7 +7,8 @@ import servicesRouter from "./routes/servicesRouter.js";
 import serversRouter from "./routes/serversRouter.js";
 import equipmentRouter from "./routes/equipmentRouter.js";
 import LogsRouter from "./routes/logsRouter.js";
-import configurationRouter from "./routes/deviceConfigurations.js";
+import configurationRouter from "./routes/deviceConfigurationsRouter.js";
+import employeesRouter from "./routes/employeesRouter.js";
 
 const PORT = process.env.APP_PORT;
 
@@ -21,12 +22,14 @@ app.use("/posluzitelji", serversRouter)
 app.use("/oprema", equipmentRouter)
 app.use("/logovi", LogsRouter)
 app.use("/konfiguracija", configurationRouter)
+app.use('/zaposlenici', employeesRouter)
 
 const connection = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    multipleStatements: true,
 };
 
 export const db = mySqlDB.createConnection(connection);
