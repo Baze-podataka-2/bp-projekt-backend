@@ -41,7 +41,7 @@ inRouter.put("/:id", async (req, res) => {
         return res.status(400).send({ message: "Potrebno je unjeti datum opis is status" })
     }
 
-    const sql = "UPDATE incidenti SET datum = ?, opis = ?, status = ? WHERE id_incidenta = ?";
+    const sql = "UPDATE  Incidenti SET datum = ?, opis = ?, status = ? WHERE id_incidenta = ?";
 
     db.query(sql, [datum, opis, status, id], (err, results) => {
         if (err) {
@@ -49,10 +49,10 @@ inRouter.put("/:id", async (req, res) => {
         }
 
         if (results.affectedRows === 0) {
-            return res.status(404).send({ message: "Usluga s tim ID-om nije pronađena" });
+            return res.status(404).send({ message: "Incident s tim ID-om nije pronađen" });
         }
 
-        return res.status(200).json({ message: "Usluga je uspjesno ažurirana" })
+        return res.status(200).json({ message: "Incident je uspjesno ažuriran" })
     })
 })
 
@@ -61,7 +61,7 @@ inRouter.put("/:id", async (req, res) => {
 inRouter.delete("/:id", async(req, res)=>{
     const { id } = req.params;
 
-    const sql = "DELETE FROM incidenti WHERE id_incidenta = ?";
+    const sql = "DELETE FROM Incidenti WHERE id_incidenta = ?";
     
     db.query(sql, [id], (err, result)=>{
 
@@ -70,10 +70,10 @@ inRouter.delete("/:id", async(req, res)=>{
         }
 
         if (result.affectedRows === 0) {
-            return res.status(404).send({ message: "Usluga s tim ID-om nije pronađena" });
+            return res.status(404).send({ message: "Incident s tim ID-om nije pronađen" });
         }
 
-        return res.status(201).json({message: "Usluga uspjesno izbrisana"})
+        return res.status(201).json({message: "Incident uspjesno izbrisan"})
     })
 })
 
