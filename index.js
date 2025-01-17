@@ -9,6 +9,7 @@ import equipmentRouter from "./routes/equipmentRouter.js";
 import LogsRouter from "./routes/logsRouter.js";
 import configurationRouter from "./routes/deviceConfigurationsRouter.js";
 import employeesRouter from "./routes/employeesRouter.js";
+import inRouter from "./routes/incidentsRouter.js";
 
 const PORT = process.env.APP_PORT;
 
@@ -23,6 +24,7 @@ app.use("/oprema", equipmentRouter)
 app.use("/logovi", LogsRouter)
 app.use("/konfiguracija", configurationRouter)
 app.use('/zaposlenici', employeesRouter)
+app.use("/incidenti", inRouter)
 
 const connection = {
     host: process.env.DB_HOST,
