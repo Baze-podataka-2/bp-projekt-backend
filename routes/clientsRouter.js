@@ -12,5 +12,16 @@ clientRouter.get('/', (req, res) => {
     })
 })
 
+// Route that will calls a procedure
+clientRouter.get('/', (req, res) => {
+    const {id_klijent, id_usluga} = req.query;
+
+    let sql = 'call PromjenaUslugeKlijenta(? ?)';
+
+    db.query(sql, (err, results) => {
+        return res.status(200).json(results);
+    })
+})
+
 
 export default clientRouter;
