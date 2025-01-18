@@ -35,6 +35,27 @@ configurationRouter.post('/kreiraj-konfiguraciju', (req, res) => {
   }
 })
 
+//dohvati broj izmjena u konfiguracijskom setu pojedinog uredjaja
+configurationRouter.get('/izmjene/:p_uredaj/:p_id_uredjaja', (req, res) => {
+  const { p_uredaj, p_id_uredjaja } = req.params;
+
+  if (!p_id_uredjaja) {
+    return res.status(404).send({ message: 'Uređaj nije pronađen' });
+  }
+
+  const sql = 'CALL p_broj_izmjena_na_uredjaju(?, ?, @rezultat); SELECT @rezultat AS rezultat FROM DUAL';
+
+  db.query(sql, [p_uredaj, p_id_uredjaja], (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: 'Došlo je do greške na serveru' });
+    }
+
+    // Dohvaćanje rezultata iz procedure
+    const output = results[1][0];
+    res.json(output)
+  });
+});
+
 
 
 export default configurationRouter;

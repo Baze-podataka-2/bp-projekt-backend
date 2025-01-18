@@ -10,6 +10,7 @@ import LogsRouter from "./routes/logsRouter.js";
 import configurationRouter from "./routes/deviceConfigurationsRouter.js";
 import employeesRouter from "./routes/employeesRouter.js";
 import inRouter from "./routes/incidentsRouter.js";
+import statusRouter from "./routes/trackStatusRouter.js";
 
 const PORT = process.env.APP_PORT;
 
@@ -25,6 +26,7 @@ app.use("/logovi", LogsRouter)
 app.use("/konfiguracija", configurationRouter)
 app.use('/zaposlenici', employeesRouter)
 app.use("/incidenti", inRouter)
+app.use("/status", statusRouter);
 
 const connection = {
     host: process.env.DB_HOST,
@@ -43,10 +45,6 @@ db.connect((err) => {
         console.log(`Spojen na bazu: ${connection.database}`)
     }
 });
-
-app.get("/", async(request, response)=>{
-    return response.status(200).json({message: "Hello"})
-})
 
 app.listen(PORT, ()=>{
     console.log(`Running on port ${PORT}`)
