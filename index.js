@@ -11,6 +11,7 @@ import configurationRouter from "./routes/deviceConfigurationsRouter.js";
 import employeesRouter from "./routes/employeesRouter.js";
 import inRouter from "./routes/incidentsRouter.js";
 import statusRouter from "./routes/trackStatusRouter.js";
+import costsRouter from "./routes/generatedCostsRouter.js";
 
 const PORT = process.env.APP_PORT;
 
@@ -27,6 +28,8 @@ app.use("/konfiguracija", configurationRouter)
 app.use('/zaposlenici', employeesRouter)
 app.use("/incidenti", inRouter)
 app.use("/status", statusRouter);
+app.use("/potrosnja", costsRouter)
+
 
 const connection = {
     host: process.env.DB_HOST,
