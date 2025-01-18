@@ -12,6 +12,19 @@ serversRouter.get('/', (req, res) => {
     })
 })
 
+
+
+
+// Get number of incidents and logs for each server
+serversRouter.get("/statistika", async(req, res)=>{
+    const sql = "SELECT * FROM ukupanBrojLiI";
+    db.query(sql, (err, results) => {
+        res.json(results);
+    })
+
+})
+
+
 //Get single server
 serversRouter.get("/:id", async (req, res) => {
     const { id } = req.params;
@@ -30,6 +43,7 @@ serversRouter.get("/:id", async (req, res) => {
 
 
 })
+
 
 
 // To add a new server
