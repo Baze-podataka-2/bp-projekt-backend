@@ -37,7 +37,7 @@ costsRouter.get('/mjeseci', (req, res) => {
 
 //Dohvati ukupnu generiranu potrošnju u toku dana
 costsRouter.get('/mjesec', (req, res) => {
-  const { mjesec } = req.body;
+  const { mjesec } = req.query;
   let sql = 'SELECT * FROM ukupna_energetska_potrosnja_po_mjesecima WHERE mjesec = ?;'
   db.query(sql, [mjesec], (err, results) => {
     if(err) {
