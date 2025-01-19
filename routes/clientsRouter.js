@@ -39,5 +39,15 @@ clientRouter.get('/azuriraj', (req, res) => {
 });
 
 
+clientRouter.get("/brojdana/:id", async(req, res)=>{
+    const { id } = req.params;
+    let sql = 'SELECT BrojDanaR(?) as recenica;';
+
+    db.query(sql, [id], (err, results) => {
+        return res.status(200).json(results);
+    })
+})
+
+
 
 export default clientRouter;
