@@ -48,6 +48,24 @@ clientRouter.get("/brojdana/:id", async(req, res)=>{
     })
 })
 
+clientRouter.get('/dugovanje', (req,res) => {
+    const { id_klijent } = req.query;
+
+    let sql = 'CALL ProvjeraDuznikaR(?, @poruka); SELECT @poruka AS poruka;'
+
+    db.query(sql, [id_klijent], (err, response) => {
+        const output = response[1][0];
+        res.json(output);
+    })
+})
+
+clientRouter.get('/aktivni', (req, res) => {
+    let sql = 'SELECT * FROM AktivniKlijenti;'
+    db.query(sql, (err, response) => {
+        res.json(response);
+    })
+})
+
 
 
 export default clientRouter;
