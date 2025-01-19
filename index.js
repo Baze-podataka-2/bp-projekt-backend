@@ -13,6 +13,7 @@ import inRouter from "./routes/incidentsRouter.js";
 import statusRouter from "./routes/trackStatusRouter.js";
 import costsRouter from "./routes/generatedCostsRouter.js";
 import clientRouter from "./routes/clientsRouter.js";
+import LiRouter from "./routes/LicencaRouter.js"
 
 const PORT = process.env.APP_PORT;
 
@@ -31,6 +32,7 @@ app.use("/incidenti", inRouter)
 app.use("/status", statusRouter);
 app.use("/potrosnja", costsRouter)
 app.use("/klijenti", clientRouter)
+app.use("/licence", LiRouter)
 
 
 const connection = {
