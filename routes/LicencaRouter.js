@@ -7,11 +7,12 @@ const LiRouter = new express.Router();
 LiRouter.get("/aktivnost/:id", async(req, res)=>{
     const { id } = req.params;
 
-    let sql = 'CALL AktivnostLicence(2, @poruka); SELECT @poruka FROM DUAL';
+    let sql = 'CALL AktivnostLicence(?, @poruka); SELECT @poruka AS poruka';
 
 
     db.query(sql, [id], (err, results) => {
-        res.json(results);
+        const poruka = results[1][0].poruka;
+        return res.json({ poruka });
     })
 })
 
