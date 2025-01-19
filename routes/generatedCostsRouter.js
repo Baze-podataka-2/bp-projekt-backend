@@ -14,12 +14,14 @@ costsRouter.get('/', (req, res) => {
 
 //Dohvati generiranu potrošnju u danu do ovog trenutka
 costsRouter.get('/trenutno', (req, res) => {
-  let sql = 'CALL p_dnevna_potrosnja(@p_datum := CURDATE(), @trosakDoSada); SELECT DAY(@p_datum) AS dan, MONTH(@p_datum) AS mjesec, @trosakDoSada AS trosakDoSada FROM DUAL;'
+  let sql = `SET @p_temp = CURDATE();
+   CALL p_dnevna_potrosnja(@p_temp, @trosakDoSada); 
+   SELECT DAY(@p_temp) AS dan, MONTH(@p_temp) AS mjesec, @trosakDoSada AS trosakDoSada FROM DUAL;`
   db.query(sql, (err, results) => {
     if(err) {
       throw err
     }
-    const output = results[1][0]
+    const output = results[2][0]
     res.json(output);
   })
 })
