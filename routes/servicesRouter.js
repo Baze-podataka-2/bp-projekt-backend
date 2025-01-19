@@ -11,6 +11,13 @@ servicesRouter.get('/', (req, res) => {
     })
 })
 
+servicesRouter.get('/ukupniprihod', (req, res) => {
+    let sql = 'SELECT * FROM UkupniPrihodiUsluge;';
+
+    db.query(sql, (err, results) => {
+        return res.status(200).json(results);
+    })
+})
 //Get single service
 servicesRouter.get("/:id", async (req, res) => {
     const { id } = req.params;
